@@ -7,4 +7,9 @@ contextBridge.exposeInMainWorld('api', {
   },
   getUserPreferences: () => ipcRenderer.invoke('preferences:get'),
   saveUserPreferences: (prefs) => ipcRenderer.invoke('preferences:set', prefs),
+  saveDeck: (deck) => ipcRenderer.invoke('decks:save', deck),
+  getDecks: () => ipcRenderer.invoke('decks:list'),
+  deleteDeck: (name) => ipcRenderer.invoke('decks:delete', name),
+  getCardImage: (card) => ipcRenderer.invoke('card-image:get', card),
+  exportDeckPdf: (deck) => ipcRenderer.invoke('decks:export-pdf', deck),
 });

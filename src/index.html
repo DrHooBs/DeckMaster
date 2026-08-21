@@ -5,6 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css">
+  <link rel="stylesheet" href="./index.css">
   <title>Deck Master</title>
   <script type="module" src="./renderer.js"></script>
 </head>
@@ -50,8 +51,99 @@
       <!-- View: Decks -->
       <section id="decks" class="view-section is-hidden">
         <h1 class="title">Decks</h1>
-        <p class="subtitle">Second view content lives here.</p>
+        <p class="subtitle">Your saved decks will appear here.</p>
+        <div id="saved-decks" class="deck-grid"></div>
+        <p id="no-decks" class="has-text-grey">No saved decks yet.</p>
       </section>
+
+      <!-- View: Loaded Deck -->
+      <section id="deck-view" class="view-section is-hidden">
+        <button id="back-to-decks" class="button is-light mb-5" type="button">Back to decks</button>
+        <div class="deck-heading">
+          <h1 id="loaded-deck-name" class="title"></h1>
+          <button id="export-deck-pdf" class="button is-link is-light" type="button">Decklist PDF</button>
+        </div>
+        <p id="loaded-deck-summary" class="subtitle"></p>
+        <div class="table-container">
+          <table class="table is-fullwidth is-striped">
+            <thead>
+              <tr><th>Image</th><th>Qty</th><th>Card</th><th>Set</th><th>Number</th><th>Type</th><th>Cover</th></tr>
+            </thead>
+            <tbody id="loaded-deck-cards"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- View: Clipboard Import -->
+      <section id="import" class="view-section is-hidden">
+        <h1 class="title">Import from clipboard</h1>
+        <p class="subtitle">Paste a deck list, review the cards, and save it locally.</p>
+
+        <div id="import-message" class="notification is-hidden" role="status"></div>
+
+        <div id="import-inputs">
+          <div class="field">
+            <label class="label" for="deck-name">Deck name</label>
+            <div class="control">
+              <input id="deck-name" class="input" type="text" placeholder="My deck" maxlength="100" />
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="label" for="deck-text">Deck list</label>
+            <div class="control">
+              <textarea id="deck-text" class="textarea" rows="12"
+                placeholder="Paste your deck list here..."></textarea>
+            </div>
+          </div>
+
+          <div class="buttons is-justify-content-flex-end">
+            <button id="paste-deck" class="button is-light" type="button">Paste from clipboard</button>
+            <button id="parse-deck" class="button is-primary" type="button">Preview deck</button>
+          </div>
+        </div>
+
+        <div id="deck-preview" class="is-hidden">
+          <h2 class="title is-5">Preview</h2>
+          <p id="deck-summary" class="mb-3"></p>
+          <div class="table-container">
+            <table class="table is-fullwidth is-striped">
+              <thead>
+                <tr><th>Image</th><th>Qty</th><th>Card</th><th>Set</th><th>Number</th><th>Type</th></tr>
+              </thead>
+              <tbody id="deck-cards"></tbody>
+            </table>
+          </div>
+          <div class="buttons is-justify-content-flex-end">
+            <button id="cancel-import" class="button is-light" type="button">Cancel</button>
+            <button id="save-deck" class="button is-success" type="button">Confirm import</button>
+          </div>
+        </div>
+      </section>
+
+      <div id="delete-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="delete-modal-title">
+        <div class="modal-background"></div>
+        <div class="modal-card">
+          <header class="modal-card-head">
+            <p id="delete-modal-title" class="modal-card-title">Delete deck</p>
+            <button id="close-delete-modal" class="delete" aria-label="Close"></button>
+          </header>
+          <section class="modal-card-body">
+            <p>Type <strong id="delete-deck-name"></strong> to confirm deletion.</p>
+            <div class="field mt-4">
+              <label class="label" for="delete-name-input">Deck name</label>
+              <div class="control">
+                <input id="delete-name-input" class="input" type="text" autocomplete="off" />
+              </div>
+            </div>
+            <p id="delete-error" class="help is-danger is-hidden">The deck name does not match.</p>
+          </section>
+          <footer class="modal-card-foot is-justify-content-flex-end">
+            <button id="cancel-delete" class="button" type="button">Cancel</button>
+            <button id="confirm-delete" class="button is-danger" type="button" disabled>Delete deck</button>
+          </footer>
+        </div>
+      </div>
 
       <!-- View: Settings -->
       <section id="settings" class="view-section is-hidden">
@@ -99,6 +191,15 @@
               <label class="label">Last Name</label>
               <div class="control">
                 <input id="last-name" class="input" type="text" placeholder="Last Name" />
+              </div>
+            </div>
+          </div>
+
+          <div class="column is-6">
+            <div class="field">
+              <label class="label" for="player-id">Player ID</label>
+              <div class="control">
+                <input id="player-id" class="input" type="text" placeholder="Player ID" maxlength="20" />
               </div>
             </div>
           </div>

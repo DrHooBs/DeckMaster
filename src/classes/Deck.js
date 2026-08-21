@@ -1,4 +1,4 @@
-import parseDeckList from './utils/deckParser.js';
+import { parseDeckList } from '../utils/deckParser.js';
 
 export class Deck {
     constructor(name, cards = []) {

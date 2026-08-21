@@ -1,8 +1,71 @@
+html,
 body {
-  font-family:
-    -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial,
-    sans-serif;
-  margin: auto;
-  max-width: 38rem;
-  padding: 2rem;
+  width: 100%;
+  min-width: 0;
+  margin: 0;
+}
+
+.deck-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 112px);
+  gap: 0.75rem;
+  justify-content: start;
+}
+
+.deck-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.deck-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.deck-delete-button {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  z-index: 1;
+}
+
+.deck-card-image {
+  display: grid;
+  height: 120px;
+  place-items: center;
+  background: #eef1f4;
+  color: #7a8490;
+}
+
+.deck-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.card-image {
+  width: 48px;
+  height: 68px;
+  object-fit: contain;
+}
+
+.deck-card .card-content {
+  padding: 0.75rem;
+}
+
+.deck-card .title {
+  overflow-wrap: anywhere;
+  font-size: 1rem;
+}
+
+.deck-card .button {
+  width: 100%;
+}
+
+@media (max-width: 600px) {
+  .deck-grid {
+    grid-template-columns: repeat(2, 112px);
+  }
 }
