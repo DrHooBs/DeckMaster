@@ -1,0 +1,117 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css">
+  <title>Deck Master</title>
+  <script type="module" src="./renderer.js"></script>
+</head>
+
+<body>
+  <!-- Persistent Navbar -->
+  <nav class="navbar is-dark" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+      <a class="navbar-item font-weight-bold" href="#">Deck Master</a>
+
+      <!-- Hamburger Icon -->
+      <a role="button" class="navbar-burger" id="burger-button" aria-label="menu" aria-expanded="false"
+        data-target="navbar-menu">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
+    </div>
+
+    <!-- Collapsible Menu -->
+    <div id="navbar-menu" class="navbar-menu">
+      <div class="navbar-start">
+        <a class="navbar-item nav-link" data-target="home">Home</a>
+        <a class="navbar-item nav-link" data-target="page2">Page 2</a>
+        <a class="navbar-item nav-link" data-target="settings">Settings</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main View Container -->
+  <main class="section">
+    <div class="container">
+      <!-- View: Home -->
+      <section id="home" class="view-section">
+        <h1 class="title">Welcome Back</h1>
+        <p class="subtitle">
+          Welcome Back <span id="trainer-name"></span>.
+        </p>
+        <button id="test" class="button is-primary">Let's build a deck</button>
+      </section>
+
+      <!-- View: Page 2 -->
+      <section id="page2" class="view-section is-hidden">
+        <h1 class="title">Page 2</h1>
+        <p class="subtitle">Second view content lives here.</p>
+      </section>
+
+      <!-- View: Settings -->
+      <section id="settings" class="view-section is-hidden">
+        <h1 class="title">Settings</h1>
+        <p class="subtitle">Manage your application preferences.</p>
+        <!-- Success Notification (Hidden by default) -->
+        <div id="save-toast" class="notification is-success is-light is-hidden mb-4">
+          <button class="delete" id="toast-dismiss"></button>
+          Preferences saved successfully!
+        </div>
+        <div class="columns is-multiline">
+          <!-- Display Name -->
+          <div class="column is-6">
+            <div class="field">
+              <label class="label">Display Name</label>
+              <div class="control">
+                <input id="display-name" class="input" type="text" placeholder="New Display Name" />
+              </div>
+            </div>
+          </div>
+
+          <!-- Date of Birth -->
+          <div class="column is-6">
+            <div class="field">
+              <label class="label">Date of Birth</label>
+              <div class="control">
+                <input id="date-of-birth" class="input" type="date" />
+              </div>
+            </div>
+          </div>
+
+          <!-- First Name -->
+          <div class="column is-6">
+            <div class="field">
+              <label class="label">First Name</label>
+              <div class="control">
+                <input id="first-name" class="input" type="text" placeholder="First Name" />
+              </div>
+            </div>
+          </div>
+
+          <!-- Last Name  -->
+          <div class="column is-6">
+            <div class="field">
+              <label class="label">Last Name</label>
+              <div class="control">
+                <input id="last-name" class="input" type="text" placeholder="Last Name" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="field is-grouped is-grouped-right mt-5">
+          <p class="control">
+            <button class="button is-primary" id="save-btn">Save Changes</button>
+          </p>
+        </div>
+      </section>
+    </div>
+  </main>
+</body>
+
+</html>
