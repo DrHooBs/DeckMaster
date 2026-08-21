@@ -5,7 +5,7 @@ window.addEventListener('DOMContentLoaded', async () => {
   const navbarMenu = document.querySelector('#navbar-menu');
   const navLinks = document.querySelectorAll('.nav-link');
   const viewSections = document.querySelectorAll('.view-section');
-  const testButton = document.querySelector('#test');
+  const newDeckButton = document.querySelector('#new-deck');
   const settingsSaveButton = document.querySelector('#save-btn');
   const trainerNameEl = document.getElementById('trainer-name');
 
@@ -55,9 +55,9 @@ window.addEventListener('DOMContentLoaded', async () => {
 
   // TODO: A deck creation form should take this test buttons place
   // 4. Native Context Menu Trigger
-  if (testButton) {
-    testButton.addEventListener('click', () => {
-      window.api?.openMenu();
+  if (newDeckButton) {
+    newDeckButton.addEventListener('click', () => {
+      window.api?.deckShowContextMenu();
     });
   }
 

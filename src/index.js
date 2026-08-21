@@ -53,15 +53,13 @@ app.on('window-all-closed', () => {
   }
 });
 
-// Context Menu
-ipcMain.on('show-context-menu', (event) => {
+// Context Menu For New Deck Button
+ipcMain.on('deck-show-context-menu', (event) => {
   const win = BrowserWindow.fromWebContents(event.sender);
   const template = [
-    { label: 'Go to Home', click: () => win.webContents.send('change-page', 'home') },
-    { label: 'Go to Page 2', click: () => win.webContents.send('change-page', 'page2') },
-    { label: 'Go to Settings', click: () => win.webContents.send('change-page', 'settings') },
-    { type: 'separator' },
-    { role: 'reload' },
+    { label: 'Build a deck from scratch', click: () => win.webContents.send('change-page', 'home') },
+    { label: 'Load a saved deck', click: () => win.webContents.send('change-page', 'decks') },
+    { label: 'Load deck from clipboard', click: () => win.webContents.send('change-page', 'settings') }
   ];
   Menu.buildFromTemplate(template).popup({ window: win });
 });

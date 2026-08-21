@@ -1,7 +1,7 @@
 const { contextBridge, ipcRenderer } = require('electron');
 
 contextBridge.exposeInMainWorld('api', {
-  openMenu: () => ipcRenderer.send('show-context-menu'),
+  deckShowContextMenu: () => ipcRenderer.send('deck-show-context-menu'),
   onPageChange: (callback) => {
     ipcRenderer.on('change-page', (_event, pageId) => callback(pageId));
   },
