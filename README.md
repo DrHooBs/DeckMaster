@@ -26,6 +26,14 @@ The application follows the standard Electron model:
 - **Main process** — Creates the application window and manages native desktop functionality.
 - **Renderer process** — Provides the user interface for working with decks and cards.
 
+The source is organized by runtime and responsibility:
+
+- `src/index.js` — Main-process composition root and application lifecycle.
+- `src/main/` — Main-process stores, IPC registration, context menu, card images, and PDF export.
+- `src/renderer.js` — Renderer bootstrap, navigation, and cross-view coordination.
+- `src/renderer/` — Import, deck list, card table, and settings view modules.
+- `src/classes/` and `src/utils/` — Shared deck/preferences models and deck/card utilities.
+
 ## License
 
 No license has been specified yet.

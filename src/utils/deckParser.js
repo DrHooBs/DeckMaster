@@ -9,7 +9,7 @@ export function parseDeckList(text) {
   const headerRegex = /^([A-Za-z\u00C0-\u024F]+):\s*\d+$/;
 
   // 2. Captures: [1: Qty] [2: Card Name] [3: Set] [4: Number]
-  const cardRegex = /^(\d+)\s+(.+)\s+([A-Z0-9]+)\s+(\d+)$/;
+  const cardRegex = /^(\d+)\s+(.+)\s+([A-Z0-9]+)\s+([0-9]+[A-Za-z]?)$/;
 
   for (const rawLine of lines) {
     const line = rawLine.trim();
@@ -29,7 +29,7 @@ export function parseDeckList(text) {
         qty: parseInt(cardMatch[1], 10),
         cardName: cardMatch[2].trim(),
         set: cardMatch[3],
-        number: parseInt(cardMatch[4], 10), // or string if preserving leading zeros/formatting
+        number: cardMatch[4],
         cardType: currentCardType
       });
     }

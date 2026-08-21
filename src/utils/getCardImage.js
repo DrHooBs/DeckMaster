@@ -5,6 +5,9 @@ const tcgdex = new TCGdex("en");
 // In-memory cache for mapping printed codes (tcgOnline) to TCGdex internal set IDs
 let setCodeCache = null;
 
+
+//TODO: There has to be a better way of doing this
+// Look at CalamityJames/Zardy implementation because i did it there
 const printedSetIds = {
     SVI: 'sv01', PAL: 'sv02', OBF: 'sv03', MEW: 'sv03.5', PAR: 'sv04',
     PAF: 'sv04.5', TEF: 'sv05', TWM: 'sv06', SFA: 'sv06.5', SCR: 'sv07',
